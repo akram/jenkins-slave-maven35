@@ -11,9 +11,9 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms && \
     yum install -y $INSTALL_PKGS && \
     rpm -V ${INSTALL_PKGS//\*/} && \
     yum clean all -y && \
-    mkdir -p $HOME/.m2 && \
-    cd /usr/local/ && \
-    curl http://www-eu.apache.org/dist/maven/maven-3/3.5.0/binaries/apache-maven-3.5.0-bin.tar.gz | tar zxvf - && \ 
+    mkdir -p $HOME/.m2 
+RUN cd /usr/local/ && \
+    curl https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.0/apache-maven-3.5.0-bin.tar.gz | tar zxvf - && \ 
     ln -s /usr/local/apache-maven-3.5.0/bin/mvn /usr/local/bin/mvn
 
 ADD contrib/bin/configure-slave /usr/local/bin/configure-slave
